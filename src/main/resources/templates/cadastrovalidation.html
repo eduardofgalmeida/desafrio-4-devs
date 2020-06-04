@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+<title>Cadastro VALIDATION (PRIVADO)</title>
+<!-- CSS -->
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Desafio-4-devs</span>
+			<a href="#" class="btn btn-success btn-lg" role="button">Login</a>
+			<a href="#" class="btn btn-success btn-lg" role="button">API's</a>
+			<a href="#" class="btn btn-success btn-lg" role="button">Cadastro de Clientes</a>
+		</nav>
+	</header>
+
+	<section>
+		<div class="container"
+			style="width: 60%; padding-bottom: 30px; padding-top: 30px">
+
+			<div align="center">
+
+				<h2>Cadastro do Código {VALIDATION}</h2>
+			</div>
+			<th:block th:include="mensagemValidacao"></th:block>
+			<form action="salvarvalidation" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" name="codValidation"
+						placeholder="Código de Validação *">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="situacao" maxlength="1"
+						placeholder="A (Ativo) ou I (Inativo)*">
+				</div>
+	
+				<button type="submit" class="btn btn-success text-lowercase" value="salvarvalidation">Gravar</button>
+			</form>
+
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">ID.</th>
+						<th scope="col">Cod. Validation</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ltvalidation : ${cadastrovalidation}">
+						<td th:text="${ltvalidation.idValidation}"></td>
+						<td th:text="${ltvalidation.codValidation}"></td>
+						<td th:text="${ltvalidation.situacao}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+</body>
+
+
+</html>

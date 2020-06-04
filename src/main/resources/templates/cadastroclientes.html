@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+<title>Cadastro de Clientes</title>
+<!-- CSS -->
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Desafio-4-devs</span>
+			<a href="#" class="btn btn-success btn-lg" role="button">Login</a>
+		</nav>
+	</header>
+
+	<section>
+		<div class="container"
+			style="width: 60%; padding-bottom: 30px; padding-top: 30px">
+
+			<div align="center">
+
+				<h2>Cadastro de clientes</h2>
+			</div>
+			<th:block th:include="mensagemValidacao"></th:block>
+			<div class="form-group">
+				<input type="text" class="form-control" name="id"
+					readonly="readonly">
+			</div>
+			<form action="salvarcliente" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" name="nome"
+						placeholder="Nome *">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="nomeResponsavel"
+						placeholder="Nome Responsável *">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="CNPJ"
+						placeholder="CNPJ">
+				</div>
+				<button type="submit" class="btn btn-success" value="salvarcliente">Gravar</button>
+				<button type="submit" class="btn btn-danger">Cancelar</button>
+			</form>
+
+			<div style="width: 60%; padding-bottom: 5px; padding-top: 30px";>
+				<form action="pesquisarcliente" method="post">
+					<label>Pesquisa por nome:</label> <input name="nomepesquisa">
+					<input type="submit" value="Buscar">
+				</form>
+			</div>
+
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Cod.</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Responsavel</th>
+						<th scope="col">CNPJ</th>
+						<th scope="col">Dt. Cadastro</th>
+						<th scope="col">-</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cliente : ${cadastroclientes}">
+						<td th:text="${cliente.id}"></td>
+						<td th:text="${cliente.nome}"></td>
+						<td th:text="${cliente.nomeResponsavel}"></td>
+						<td th:text="${cliente.cnpj}"></td>
+						<td th:text="${cliente.dtCadastro}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+</body>
+
+
+</html>

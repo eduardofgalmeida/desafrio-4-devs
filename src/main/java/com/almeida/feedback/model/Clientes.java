@@ -1,6 +1,7 @@
-package com.almeida.feedback.models;
+package com.almeida.feedback.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
@@ -18,19 +19,23 @@ public class Clientes implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name = "ID")
 	private Long id;
 	
 	@NotBlank
-	private String nome_cliente;
+	@Column(name = "NOME")
+	private String nome;
 	
 	@NotBlank
-	private String nome_responsavel;
+	@Column(name = "NOME_RESPONSAVEL")
+	private String nomeResponsavel;
 	
-	@Column(unique=true)
+	@Column(name = "CNPJ", unique=true)
 	private BigInteger cnpj;
 	
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
-	private LocalDate dt_cadastro;
+	@Column(name = "DT_CADASTRO")
+	private LocalDate dtCadastro;
 
 	public Long getId() {
 		return id;
@@ -40,20 +45,20 @@ public class Clientes implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome_cliente() {
-		return nome_cliente;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNome_cliente(String nome_cliente) {
-		this.nome_cliente = nome_cliente;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getNome_responsavel() {
-		return nome_responsavel;
+	public String getNomeResponsavel() {
+		return nomeResponsavel;
 	}
 
-	public void setNome_responsavel(String nome_responsavel) {
-		this.nome_responsavel = nome_responsavel;
+	public void setNomeResponsavel(String nomeResponsavel) {
+		this.nomeResponsavel = nomeResponsavel;
 	}
 
 	public BigInteger getCnpj() {
@@ -64,16 +69,15 @@ public class Clientes implements Serializable{
 		this.cnpj = cnpj;
 	}
 
-	public LocalDate getDt_cadastro() {
-		return dt_cadastro;
+	public LocalDate getDtCadastro() {
+		return dtCadastro;
 	}
 
-	public void setDt_cadastro(LocalDate dt_cadastro) {
-		this.dt_cadastro = dt_cadastro;
+	public void setDtCadastro(LocalDate dtCadastro) {
+		this.dtCadastro = dtCadastro;
 	}
+
 	
-    
-	
-	
+
 
 }
