@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.almeida.feedback.model.Avaliacoes;
-import com.almeida.feedback.model.ValidationModel;
 import com.almeida.feedback.repository.AvaliacoesRepository;
 
 @Controller
@@ -24,7 +23,7 @@ public class CadastroAvaliacoesController {
 	@Autowired
 	AvaliacoesRepository avaliacoesRepository;
 	
-	private static final Logger logger = LoggerFactory.getLogger(CadastroValidationController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CadastroAvaliacoesController.class);
 	
     @RequestMapping("/")
     public String index(){
@@ -58,7 +57,7 @@ public class CadastroAvaliacoesController {
 	@RequestMapping(method = RequestMethod.GET, value = "/listaavaliacoes")
 	public ModelAndView listaAvaliacoes() {
 		
-		ModelAndView modelAndView = new ModelAndView("cadastrovalidation");
+		ModelAndView modelAndView = new ModelAndView("cadastroavaliacoes");
 		Iterable<Avaliacoes> avaliacoes = avaliacoesRepository.findAll();
 		modelAndView.addObject("listaavaliacoes", avaliacoes);
 		return modelAndView;

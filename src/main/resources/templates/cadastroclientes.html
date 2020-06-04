@@ -21,7 +21,7 @@
 				aria-label="Alterna navegação">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="#">DESAFIO-4-DEVS</a>
+			<a class="navbar-brand" href="/">DESAFIO-4-DEVS</a>
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -44,22 +44,22 @@
 				<h2>Cadastro de clientes</h2>
 			</div>
 			<th:block th:include="mensagemValidacao"></th:block>
-			<div class="form-group">
-				<input type="text" class="form-control" name="id"
-					readonly="readonly">
-			</div>
-			<form action="salvarcliente" method="post">
+			<form action="salvarcliente" method="post" th:object="${clienteobj}">
+				<div class="form-group">
+					<input type="text" class="form-control" name="id"
+						readonly="readonly" th:field="*{id}">
+				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" name="nome"
-						placeholder="Nome *">
+						placeholder="Nome *" th:field="*{nome}">
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" name="nomeResponsavel"
-						placeholder="Nome Responsável *">
+						placeholder="Nome Responsável *" th:field="*{nomeResponsavel}">
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" name="CNPJ"
-						placeholder="CNPJ">
+						placeholder="CNPJ" th:field="*{cnpj}">
 				</div>
 
 				<small class="form-text text-muted">(*) Campos obrigatórios</small>
@@ -98,8 +98,10 @@
 						<td th:text="${cliente.nomeResponsavel}"></td>
 						<td th:text="${cliente.cnpj}"></td>
 						<td th:text="${cliente.dtCadastro}"></td>
-						<td><a href="#">Editar</a></td>
-						<td><a href="#">Excluir</a></td>
+						<td><a
+							th:href="@{/editarcliente/{idcliente}(idcliente=${cliente.id})}">Editar</a></td>
+						<td><a
+							th:href="@{/removercliente/{idcliente}(idcliente=${cliente.id})}">Remover</a></td>
 					</tr>
 				</tbody>
 			</table>

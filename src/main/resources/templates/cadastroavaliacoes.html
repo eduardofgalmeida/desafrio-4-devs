@@ -21,7 +21,7 @@
 				aria-label="Alterna navegação">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="#">DESAFIO-4-DEVS</a>
+			<a class="navbar-brand" href="/">DESAFIO-4-DEVS</a>
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -47,39 +47,55 @@
 
 			<th:block th:include="mensagemValidacao"></th:block>
 			<form action="salvaravaliacoes" method="post">
-				<div class="form-group" id="datepicker" data-date="02-2012"
-					data-date-format="mm-yyyy">
-					<input type="date" class="form-control" name="mesAno">
+
+				<div class="form-group">
+					<input type="date" class="form-control" name="nome"
+						placeholder="Data/Mês *">
 				</div>
-			</form>
-			<form>
 				<div class="form-group">
 					<input type="text" class="form-control" name="clientesAvaliacao"
 						placeholder="Clientes *">
 				</div>
-			</form>
-			<form>
+
 				<div class="form-group">
-					<input type="text" class="form-control" name="avaliacao"
-						placeholder="Nota *">
+					<label>Cliente</label> <select class="form-control"
+						name="avaliacao" >
+						<option th:each="ltclientesx : ${cadastroclientes}"><td th:text="${ltclientesx.nome}"></td></option>
+					</select> <br>
 				</div>
-			</form>
 
-			<textarea id="summernote" type="text" class="form-control"
-				name="motAvaliacao" placeholder="Motivo de Avaliação *"> </textarea>
+				<div class="form-group">
+					<label>Selecionar a nota</label> <select class="form-control"
+						name="avaliacao">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select> <br>
+				</div>
 
-			<small class="form-text text-muted">(*) Campos obrigatórios</small>
+				<textarea id="summernote" type="text" class="form-control"
+					name="motAvaliacao" placeholder="Motivo de Avaliação *"> </textarea>
 
 
-			<div class="container"
-				style="width: 60%; padding-bottom: 30px; padding-top: 30px"
-				align="center">
+				<small class="form-text text-muted">(*) Campos obrigatórios</small>
 
-				<button type="button" class="btn btn-success">Gravar</button>
-				<button type="button" class="btn btn-danger">Cancelar</button>
 
-			</div>
+				<div class="container"
+					style="width: 60%; padding-bottom: 30px; padding-top: 30px"
+					align="center">
 
+					<button type="submit" class="btn btn-success"
+						value="salvaravaliacoes">Gravar</button>
+					<button type="button" class="btn btn-danger">Cancelar</button>
+
+				</div>
 			</form>
 
 			<table class="table">
@@ -92,7 +108,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="ltavaliacoes : ${cadastoavaliacoes}">
+					<tr th:each="ltavaliacoes : ${cadastroavaliacoes}">
 						<td th:text="${ltavaliacoes.id}"></td>
 						<td th:text="${ltavaliacoes.clientesAvaliacao}"></td>
 						<td th:text="${ltavaliacoes.avaliacao}"></td>

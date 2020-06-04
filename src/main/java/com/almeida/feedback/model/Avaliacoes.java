@@ -20,16 +20,14 @@ public class Avaliacoes implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
-	@NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
 	@Column(name = "MES_ANO")
 	private LocalDate mesAno;
 	
-	@NotBlank
+
 	@Column(name = "CLIENTES_AVALIACAO")
 	private String clientesAvaliacao;
 	
-	@NotBlank
 	@Column(name = "avaliacao")
 	private Integer avaliacao;
 	

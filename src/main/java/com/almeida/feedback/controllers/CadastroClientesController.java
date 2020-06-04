@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +50,7 @@ public class CadastroClientesController {
         ModelAndView mv = new ModelAndView("cadastroclientes");
         List<Clientes> clientesAll = clientesRepository.findAll();
         mv.addObject("cadastroclientes", clientesAll);
+        mv.addObject("clienteobj", new Clientes());
         return mv;
        
     }
@@ -56,8 +58,8 @@ public class CadastroClientesController {
 	@PostMapping("**/pesquisarcliente")
 	public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) throws Exception {
 		ModelAndView modelAndView = new ModelAndView("cadastroclientes");
-		modelAndView.addObject("listaclientes", clientesRepository.findClientesByNome(nomepesquisa));
-		modelAndView.addObject("clientebj", new Clientes());
+		modelAndView.addObject("cadastroclientes", clientesRepository.findClientesByNome(nomepesquisa));
+		modelAndView.addObject("clienteobj", new Clientes());
 		return modelAndView;
 	}
 
@@ -70,7 +72,7 @@ public class CadastroClientesController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value="/salvarcliente", method=RequestMethod.POST)
+	@RequestMapping(value="**/salvarcliente", method=RequestMethod.POST)
 	public String savePost(@Valid Clientes clientesModel, BindingResult result, RedirectAttributes attributes) {
 		try {
 		if(result.hasErrors()) {
@@ -86,13 +88,26 @@ public class CadastroClientesController {
 	
 	}
 	
-//	@GetMapping("editarcliente/{idcliente}")
-//	public ModelAndView editar(@PathVariable("idcliente") Long idcliente) {
-//		Optional<Clientes> cliente = clientesRepository.findById(idcliente);
-//		
-//		ModelAndView modelAndView = new ModelAndView("cadastroclientes");
-//		modelAndView.addObject("clienteobj", cliente.get());
-//		return modelAndView;
-//	}
+	@GetMapping("editarcliente/{idcliente}")
+	public ModelAndView editar(@PathVariable("idcliente") Long idcliente) {
+		Optional<Clientes> cliente = clientesRepository.findById(idcliente);
+		
+		ModelAndView modelAndView = new ModelAndView("cadastroclientes");
+		modelAndView.addObject("clienteobj", cliente.get());
+		return modelAndView;
+	}
+	
+	@GetMapping("removercliente/{idcliente}")
+	public ModelAndView excluir(@PathVariable("idcliente") Long idcliente) {
+
+		clientesRepository.deleteById(idcliente);
+		
+		ModelAndView modelAndView = new ModelAndView("cadastroclientes");
+		modelAndView.addObject("cadastroclientes", clientesRepository.findAll());
+		modelAndView.addObject("clienteobj", new Clientes());
+		
+		return modelAndView;
+	}
+	
 	
 }
