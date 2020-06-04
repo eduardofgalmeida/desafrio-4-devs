@@ -14,22 +14,34 @@
 
 <body>
 	<header>
-		<nav class="navbar navbar-dark bg-dark">
-			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Desafio-4-devs</span>
-			<a href="#" class="btn btn-success btn-lg" role="button">Login</a>
-			<a href="#" class="btn btn-success btn-lg" role="button">API's</a>
-			<a href="#" class="btn btn-success btn-lg" role="button">Cadastro de Clientes</a>
-		</nav>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">DESAFIO-4-DEVS</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cadastroclientes">Cadastro de Clientes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cadastroavaliacoes">Cadastro de Avaliações</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 	</header>
 
 	<section>
 		<div class="container"
-			style="width: 60%; padding-bottom: 30px; padding-top: 30px">
+			style="width: 30%; padding-bottom: 30px; padding-top: 30px">
 
-			<div align="center">
-
-				<h2>Cadastro do Código {VALIDATION}</h2>
+			<div align="center" style="padding-bottom: 30px">
+				<h2>Cadastro do Código {VALIDATION - ACESSO RESTRITO}</h2>
 			</div>
+
 			<th:block th:include="mensagemValidacao"></th:block>
 			<form action="salvarvalidation" method="post">
 				<div class="form-group">
@@ -37,11 +49,21 @@
 						placeholder="Código de Validação *">
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" name="situacao" maxlength="1"
-						placeholder="A (Ativo) ou I (Inativo)*">
+					<input type="text" class="form-control" name="situacao"
+						maxlength="1" placeholder="A (Ativo) ou I (Inativo)*">
 				</div>
-	
-				<button type="submit" class="btn btn-success text-lowercase" value="salvarvalidation">Gravar</button>
+
+				<small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+				<div class="container"
+					style="width: 60%; padding-bottom: 30px; padding-top: 30px"
+					align="center">
+
+					<button type="button" class="btn btn-success"
+						value="salvarvalidation">Gravar</button>
+					<button type="button" class="btn btn-danger">Cancelar</button>
+
+				</div>
 			</form>
 
 			<table class="table">

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Cadastro de Clientes</title>
+<!-- CSS -->
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+	<header>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarTogglerDemo03"
+				aria-controls="navbarTogglerDemo03" aria-expanded="false"
+				aria-label="Alterna navegação">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="#">DESAFIO-4-DEVS</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastroclientes">Cadastro de Clientes</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastroavaliacoes">Cadastro de Avaliações</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</header>
+
+	<section>
+		<div class="container"
+			style="width: 60%; padding-bottom: 30px; padding-top: 30px">
+
+			<div align="center">
+
+				<h2>AVALIAÇÕES</h2>
+			</div>
+
+			<th:block th:include="mensagemValidacao"></th:block>
+			<form action="salvaravaliacoes" method="post">
+				<div class="form-group" id="datepicker" data-date="02-2012"
+					data-date-format="mm-yyyy">
+					<input type="date" class="form-control" name="mesAno">
+				</div>
+			</form>
+			<form>
+				<div class="form-group">
+					<input type="text" class="form-control" name="clientesAvaliacao"
+						placeholder="Clientes *">
+				</div>
+			</form>
+			<form>
+				<div class="form-group">
+					<input type="text" class="form-control" name="avaliacao"
+						placeholder="Nota *">
+				</div>
+			</form>
+
+			<textarea id="summernote" type="text" class="form-control"
+				name="motAvaliacao" placeholder="Motivo de Avaliação *"> </textarea>
+
+			<small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+
+			<div class="container"
+				style="width: 60%; padding-bottom: 30px; padding-top: 30px"
+				align="center">
+
+				<button type="button" class="btn btn-success">Gravar</button>
+				<button type="button" class="btn btn-danger">Cancelar</button>
+
+			</div>
+
+			</form>
+
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">ID.</th>
+						<th scope="col">Mês/Ano</th>
+						<th scope="col">Cliente</th>
+						<th scope="col">Motivo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ltavaliacoes : ${cadastoavaliacoes}">
+						<td th:text="${ltavaliacoes.id}"></td>
+						<td th:text="${ltavaliacoes.clientesAvaliacao}"></td>
+						<td th:text="${ltavaliacoes.avaliacao}"></td>
+						<td th:text="${ltavaliacoes.motAvaliacao}"></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<script>
+		$('#summernote').summernote({
+			placeholder : 'Texto *',
+			tabsize : 2,
+			height : 300
+		});
+	</script>
+
+
+</body>
+
+
+</html>

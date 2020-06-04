@@ -14,15 +14,30 @@
 
 <body>
 	<header>
-		<nav class="navbar navbar-dark bg-dark">
-			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Desafio-4-devs</span>
-			<a href="#" class="btn btn-success btn-lg" role="button">Login</a>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarTogglerDemo03"
+				aria-controls="navbarTogglerDemo03" aria-expanded="false"
+				aria-label="Alterna navegação">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="#">DESAFIO-4-DEVS</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastroclientes">Cadastro de Clientes</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastroavaliacoes">Cadastro de Avaliações</a></li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 
 	<section>
 		<div class="container"
-			style="width: 60%; padding-bottom: 30px; padding-top: 30px">
+			style="width: 75%; padding-bottom: 30px; padding-top: 30px">
 
 			<div align="center">
 
@@ -46,8 +61,15 @@
 					<input type="text" class="form-control" name="CNPJ"
 						placeholder="CNPJ">
 				</div>
-				<button type="submit" class="btn btn-success" value="salvarcliente">Gravar</button>
-				<button type="submit" class="btn btn-danger">Cancelar</button>
+
+				<small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+				<div class="container"
+					style="width: 75%; padding-bottom: 30px; padding-top: 30px"
+					align="center">
+					<button type="submit" class="btn btn-success" value="salvarcliente">Gravar</button>
+					<button type="submit" class="btn btn-danger">Cancelar</button>
+				</div>
 			</form>
 
 			<div style="width: 60%; padding-bottom: 5px; padding-top: 30px";>
@@ -66,6 +88,7 @@
 						<th scope="col">CNPJ</th>
 						<th scope="col">Dt. Cadastro</th>
 						<th scope="col">-</th>
+						<th scope="col">*</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,6 +98,8 @@
 						<td th:text="${cliente.nomeResponsavel}"></td>
 						<td th:text="${cliente.cnpj}"></td>
 						<td th:text="${cliente.dtCadastro}"></td>
+						<td><a href="#">Editar</a></td>
+						<td><a href="#">Excluir</a></td>
 					</tr>
 				</tbody>
 			</table>
